@@ -25,7 +25,7 @@ RV NO_IMPLICIT_LOOPS
 RV MAX_TASK_ENTRIES=1
 RV MAX_TASKS=1+
 
-U main%b		main.adb		8fbedaed NE OO SU
+U main%b		main.adb		5500c3dd NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
@@ -62,7 +62,7 @@ D interfac.ads		20210520051132 edec285f interfaces%s
 D i-c.ads		20210520051132 d9beded9 interfaces.c%s
 D i-cstrin.ads		20210520051132 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
-D main.adb		20230301125934 214a0f80 main%b
+D main.adb		20230301205212 fbf416b0 main%b
 D system.ads		20210520051136 2ffa5114 system%s
 D s-atacco.ads		20210520051132 4c36d12f system.address_to_access_conversions%s
 D s-arit64.ads		20210520051132 5f88d2b0 system.arith_64%s
@@ -109,31 +109,29 @@ X 1 ada.ads
 16K9*Ada 20e8 19|1r6 1r23
 X 13 a-textio.ads
 58K13*Text_IO 725e16 19|1w10 1r27
-463U14*Put 19|44s4 52s10
-479U14*Get_Line 19|45s4 47s4 53s10
-506U14*Put_Line 19|40s7
+463U14*Put 19|43s4 47s4
+479U14*Get_Line 19|44s4 48s4
+506U14*Put_Line 19|39s7
 X 15 interfac.ads
 55I9*Integer_64<long_long_integer>
 X 19 main.adb
-3U11*Main 3b11 64l5 64t9
-4a4 input_num_threads{string} 5r40 45m13 46r39
-5i4 last_index_num_threads{natural} 45m32 46r60
-6i4 value_num_threads{integer} 10r33 46m4 49r43
-8a4 input_break_time{string} 9r39 47m13 53m19 54r48
-9i4 last_index_break_time{natural} 47m31 53m37 54r68
-10a4 value_break_time(duration) 51r16 54m10
-11i4 count{integer}
-13b4 can_stop{boolean} 14r18 28m7 36r20
-17T14 break_thread 19l8 19e20 23b14 29l8 29t20 57r19
-18Y13 SetDelay 18>22 25b14 27l11 27t19
-18o22 delayTime{duration} 26r17
-21T14 main_thread 31b14 41l8 41t19 49r65
-25o24 delayTime{duration}
-32i7 sum{long_long_integer} 35m10 35r17 40r16
-49A12 main_thread_array(21T14)<integer> 58r19
-51i11 i{integer} 54r27
-57t10 breaker{17T14}
-58a10 threads{49A12}
+3U11*Main 3b11 63l5 63t9
+4a4 input_num_threads{string} 5r40 44m13 45r39
+5i4 last_index_num_threads{natural} 44m32 45r60
+6i4 value_num_threads{integer} 45m4 52r43
+8a4 input_break_time{string} 9r39 48m13 49r39
+9i4 last_index_break_time{natural} 48m31 49r59
+10o4 value_break_time{duration} 49m4 58r27
+12b4 can_stop{boolean} 13r18 27m7 35r20
+16T14 break_thread 18l8 18e20 22b14 28l8 28t20 55r19
+17Y13 SetDelay 17>22 24b14 26l11 26t19 58s18
+17o22 delayTime{duration} 25r17
+20T14 main_thread 30b14 40l8 40t19 52r65
+24o24 delayTime{duration}
+31i7 sum{long_long_integer} 34m10 34r17 39r16
+52A12 main_thread_array(20T14)<integer> 56r19
+55t10 breaker{16T14} 58r10
+56a10 threads{52A12}
 X 22 s-arit64.ads
 44I12*Int64{15|55I9}
 54V13*Multiply_With_Ovflo_Check64{44I12} 55i<c,__gnat_mulv64>22
