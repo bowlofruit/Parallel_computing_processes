@@ -1,0 +1,2 @@
+main.adb:51:11: error: missing Range attribute in iteration over an array
+main.adb:51:11: error: if "i" is meant to designate an element of the array, use "of"
