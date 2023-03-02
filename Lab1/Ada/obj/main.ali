@@ -22,10 +22,10 @@ RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_ATTRIBUTES
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
-RV MAX_TASK_ENTRIES=1
+RV MAX_TASK_ENTRIES=2
 RV MAX_TASKS=1+
 
-U main%b		main.adb		5500c3dd NE OO SU
+U main%b		main.adb		de429094 NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
@@ -43,6 +43,7 @@ Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 Z system.val_fixed_64%s	s-vafi64.ads		s-vafi64.ali
 Z system.val_int%s	s-valint.ads		s-valint.ali
+Z system.val_lli%s	s-vallli.ads		s-vallli.ali
 
 D ada.ads		20210520051132 76789da1 ada%s
 D a-calend.ads		20210520051128 474d9720 ada.calendar%s
@@ -62,7 +63,7 @@ D interfac.ads		20210520051132 edec285f interfaces%s
 D i-c.ads		20210520051132 d9beded9 interfaces.c%s
 D i-cstrin.ads		20210520051132 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
-D main.adb		20230301205212 fbf416b0 main%b
+D main.adb		20230302000000 70b645f9 main%b
 D system.ads		20210520051136 2ffa5114 system%s
 D s-atacco.ads		20210520051132 4c36d12f system.address_to_access_conversions%s
 D s-arit64.ads		20210520051132 5f88d2b0 system.arith_64%s
@@ -96,6 +97,8 @@ D s-traent.ads		20210520051134 26a8d361 system.traceback_entries%s
 D s-unstyp.ads		20210520051134 2b077493 system.unsigned_types%s
 D s-vafi64.ads		20210520051134 2ff3dc11 system.val_fixed_64%s
 D s-valint.ads		20210520051134 e7fcadb7 system.val_int%s
+D s-vallli.ads		20210520051134 0767e6f3 system.val_lli%s
+D s-valllu.ads		20210520051134 660d930f system.val_llu%s
 D s-valuns.ads		20210520051134 dac7b45d system.val_uns%s
 D s-valuef.ads		20210520051134 44d93748 system.value_f%s
 D s-valuei.ads		20210520051134 978dd0a6 system.value_i%s
@@ -109,29 +112,38 @@ X 1 ada.ads
 16K9*Ada 20e8 19|1r6 1r23
 X 13 a-textio.ads
 58K13*Text_IO 725e16 19|1w10 1r27
-463U14*Put 19|43s4 47s4
-479U14*Get_Line 19|44s4 48s4
-506U14*Put_Line 19|39s7
+463U14*Put 19|50s4 54s4 66s13
+479U14*Get_Line 19|51s4 55s4 67s13
+506U14*Put_Line 19|46s7
 X 15 interfac.ads
 55I9*Integer_64<long_long_integer>
 X 19 main.adb
-3U11*Main 3b11 63l5 63t9
-4a4 input_num_threads{string} 5r40 44m13 45r39
-5i4 last_index_num_threads{natural} 44m32 45r60
-6i4 value_num_threads{integer} 45m4 52r43
-8a4 input_break_time{string} 9r39 48m13 49r39
-9i4 last_index_break_time{natural} 48m31 49r59
-10o4 value_break_time{duration} 49m4 58r27
-12b4 can_stop{boolean} 13r18 27m7 35r20
-16T14 break_thread 18l8 18e20 22b14 28l8 28t20 55r19
-17Y13 SetDelay 17>22 24b14 26l11 26t19 58s18
-17o22 delayTime{duration} 25r17
-20T14 main_thread 30b14 40l8 40t19 52r65
-24o24 delayTime{duration}
-31i7 sum{long_long_integer} 34m10 34r17 39r16
-52A12 main_thread_array(20T14)<integer> 56r19
-55t10 breaker{16T14} 58r10
-56a10 threads{52A12}
+3U11*Main 3b11 75l5 75t9
+5a4 input_num_threads{string} 6r40 51m13 52r39
+6i4 last_index_num_threads{natural} 51m32 52r60
+7i4 value_num_threads{integer} 16r37 52m4 59r43 60r45 65r23
+9a4 input_break_time{string} 10r39 13r33 67m22 68r53
+10i4 last_index_break_time{natural} 67m40 68r73
+12a4 input_step{string} 55m13 56r42
+13i4 last_index_step{natural} 55m25 56r56
+14i4 value_step{long_long_integer} 56m4 59r77
+16A9 canStop_array(boolean)<integer>
+17b4 is_stop{boolean} 18r18 43r20 45m7
+20T14 break_thread 23l8 23e20 27b14 36l8 36t20 60r67
+21Y13 SetDelay 21>22 30b14 32l11 32t19 68s29
+21o22 delayTime{duration} 31r17
+22Y13 changeState 22>25 33b14 35l11 35t22
+22b25 state{boolean}
+25T14 main_thread 25d27 38b14 47l8 47t19 59r65
+25i27 step{long_long_integer} 42r23
+28b7 is_stop{boolean} 34m10
+30o24 delayTime{duration}
+33b27 state{boolean}
+39i7 sum{long_long_integer} 42m10 42r17 46r16
+59A12 main_thread_array(25T14)<integer>
+60A12 break_thread_array(20T14)<integer> 63r24
+63a10 break_thread{60A12} 68r13
+65i14 i{integer} 68r26
 X 22 s-arit64.ads
 44I12*Int64{15|55I9}
 54V13*Multiply_With_Ovflo_Check64{44I12} 55i<c,__gnat_mulv64>22
