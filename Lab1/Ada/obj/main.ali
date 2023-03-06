@@ -25,7 +25,7 @@ RV NO_IMPLICIT_LOOPS
 RV MAX_TASK_ENTRIES=2
 RV MAX_TASKS=1+
 
-U main%b		main.adb		de429094 NE OO SU
+U main%b		main.adb		8f9fcea3 NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
@@ -63,7 +63,7 @@ D interfac.ads		20210520051132 edec285f interfaces%s
 D i-c.ads		20210520051132 d9beded9 interfaces.c%s
 D i-cstrin.ads		20210520051132 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
-D main.adb		20230302000000 70b645f9 main%b
+D main.adb		20230302091208 216b1bce main%b
 D system.ads		20210520051136 2ffa5114 system%s
 D s-atacco.ads		20210520051132 4c36d12f system.address_to_access_conversions%s
 D s-arit64.ads		20210520051132 5f88d2b0 system.arith_64%s
@@ -112,38 +112,44 @@ X 1 ada.ads
 16K9*Ada 20e8 19|1r6 1r23
 X 13 a-textio.ads
 58K13*Text_IO 725e16 19|1w10 1r27
-463U14*Put 19|50s4 54s4 66s13
-479U14*Get_Line 19|51s4 55s4 67s13
-506U14*Put_Line 19|46s7
+463U14*Put 19|57s4 61s4 65s4
+479U14*Get_Line 19|58s4 62s4 66s4
+506U14*Put_Line 19|52s7
 X 15 interfac.ads
 55I9*Integer_64<long_long_integer>
 X 19 main.adb
-3U11*Main 3b11 75l5 75t9
-5a4 input_num_threads{string} 6r40 51m13 52r39
-6i4 last_index_num_threads{natural} 51m32 52r60
-7i4 value_num_threads{integer} 16r37 52m4 59r43 60r45 65r23
-9a4 input_break_time{string} 10r39 13r33 67m22 68r53
-10i4 last_index_break_time{natural} 67m40 68r73
-12a4 input_step{string} 55m13 56r42
-13i4 last_index_step{natural} 55m25 56r56
-14i4 value_step{long_long_integer} 56m4 59r77
-16A9 canStop_array(boolean)<integer>
-17b4 is_stop{boolean} 18r18 43r20 45m7
-20T14 break_thread 23l8 23e20 27b14 36l8 36t20 60r67
-21Y13 SetDelay 21>22 30b14 32l11 32t19 68s29
-21o22 delayTime{duration} 31r17
-22Y13 changeState 22>25 33b14 35l11 35t22
-22b25 state{boolean}
-25T14 main_thread 25d27 38b14 47l8 47t19 59r65
-25i27 step{long_long_integer} 42r23
-28b7 is_stop{boolean} 34m10
-30o24 delayTime{duration}
-33b27 state{boolean}
-39i7 sum{long_long_integer} 42m10 42r17 46r16
-59A12 main_thread_array(25T14)<integer>
-60A12 break_thread_array(20T14)<integer> 63r24
-63a10 break_thread{60A12} 68r13
-65i14 i{integer} 68r26
+3U11*Main 3b11 90l5 90t9
+5a4 input_num_threads{string} 6r40 58m13 59r39
+6i4 last_index_num_threads{natural} 58m32 59r60
+7i4 value_num_threads{integer} 17r37 59m4 70r43 71r45
+9a4 input_break_time{string} 10r39 14r33 66m13 67r39
+10i4 last_index_break_time{natural} 66m31 67r59
+11o4 value_break_time{duration} 67m4 79r33
+13a4 input_step{string} 62m13 63r42
+14i4 last_index_step{natural} 62m25 63r56
+15i4 value_step{long_long_integer} 63m4 70r77
+17A9 canStop_array(boolean)<integer> 18r20
+18a4 is_stop_array{17A9} 19r18 36m10 50r20
+21T14 break_thread 24l8 24e20 30b14 39l8 39t20 71r67
+22Y13 SetDelay 22>22 32b14 34l11 34t19 79s24
+22o22 delayTime{duration} 33r17
+23Y13 ChangeState 23>25 35b14 37l11 37t22
+23i25 number{integer} 36r24
+26T14 main_thread 26d27 28l11 28e22 41b14 54l8 54t19 70r65
+26i27 step{long_long_integer} 49r23
+27Y13 SetNumber 27>24 45b14 47l11 47t20 83s32
+27i24 number{integer} 46r15
+32o24 delayTime{duration}
+35i27 number{integer}
+42i7 i{integer} 46m10 50r34
+43i7 sum{long_long_integer} 49m10 49r17 52r16
+45i25 number{integer}
+70A12 main_thread_array(26T14)<integer> 76r24
+71A12 break_thread_array(21T14)<integer> 75r19
+75a10 breaker{71A12} 78r19 79r13
+76a10 thread_array{70A12} 82r22 83r16
+78i14 i{integer} 79r21
+82i17 i{integer} 83r29 83r42
 X 22 s-arit64.ads
 44I12*Int64{15|55I9}
 54V13*Multiply_With_Ovflo_Check64{44I12} 55i<c,__gnat_mulv64>22

@@ -318,9 +318,9 @@ package body ada_main is
    end;
 
 --  BEGIN Object file/option list
-   --   C:\Education\Parallel_computing_processes\Lab1\Ada\obj\main.o
-   --   -LC:\Education\Parallel_computing_processes\Lab1\Ada\obj\
-   --   -LC:\Education\Parallel_computing_processes\Lab1\Ada\obj\
+   --   D:\Education\Parallel_computing_processes\Lab1\Ada\obj\main.o
+   --   -LD:\Education\Parallel_computing_processes\Lab1\Ada\obj\
+   --   -LD:\Education\Parallel_computing_processes\Lab1\Ada\obj\
    --   -LC:/gnat/2021/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/
    --   -static
    --   -lgnarl
