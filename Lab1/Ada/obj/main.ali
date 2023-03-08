@@ -22,16 +22,19 @@ RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_ATTRIBUTES
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
-RV MAX_TASK_ENTRIES=2
+RV MAX_TASK_ENTRIES=1
 RV MAX_TASKS=1+
 
-U main%b		main.adb		8f9fcea3 NE OO SU
+U main%b		main.adb		bc57fb86 NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
+Z interfaces%s		interfac.ads		interfac.ali
 Z system%s		system.ads		system.ali
+Z system.concat_8%s	s-conca8.adb		s-conca8.ali
+Z system.img_fixed_64%s	s-imfi64.ads		s-imfi64.ali
 Z system.img_int%s	s-imgint.ads		s-imgint.ali
 Z system.img_lli%s	s-imglli.ads		s-imglli.ali
 Z system.parameters%s	s-parame.adb		s-parame.ali
@@ -41,8 +44,6 @@ Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
-Z system.val_fixed_64%s	s-vafi64.ads		s-vafi64.ali
-Z system.val_int%s	s-valint.ads		s-valint.ali
 Z system.val_lli%s	s-vallli.ads		s-vallli.ali
 
 D ada.ads		20210520051132 76789da1 ada%s
@@ -63,15 +64,18 @@ D interfac.ads		20210520051132 edec285f interfaces%s
 D i-c.ads		20210520051132 d9beded9 interfaces.c%s
 D i-cstrin.ads		20210520051132 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
-D main.adb		20230302091208 216b1bce main%b
+D main.adb		20230308103334 12a32eeb main%b
 D system.ads		20210520051136 2ffa5114 system%s
 D s-atacco.ads		20210520051132 4c36d12f system.address_to_access_conversions%s
 D s-arit64.ads		20210520051132 5f88d2b0 system.arith_64%s
+D s-conca8.ads		20210520051132 e3074dd7 system.concat_8%s
 D s-crtl.ads		20210520051132 0ebbdb71 system.crtl%s
 D s-exctab.ads		20210520051132 54135002 system.exception_table%s
 D s-ficobl.ads		20210520051132 078245e4 system.file_control_block%s
 D s-finroo.ads		20210520051132 4ff27390 system.finalization_root%s
+D s-imagef.ads		20210520051134 019cdf69 system.image_f%s
 D s-imagei.ads		20210520051134 0d3f86a7 system.image_i%s
+D s-imfi64.ads		20210520051134 dbac59b3 system.img_fixed_64%s
 D s-imgint.ads		20210520051134 bdb6f5ec system.img_int%s
 D s-imglli.ads		20210520051134 3723d9ff system.img_lli%s
 D s-multip.ads		20210520051134 38ac9f73 system.multiprocessors%s
@@ -95,12 +99,8 @@ D s-tasren.ads		20210520051128 a67a9949 system.tasking.rendezvous%s
 D s-tassta.ads		20210520051128 cca55c94 system.tasking.stages%s
 D s-traent.ads		20210520051134 26a8d361 system.traceback_entries%s
 D s-unstyp.ads		20210520051134 2b077493 system.unsigned_types%s
-D s-vafi64.ads		20210520051134 2ff3dc11 system.val_fixed_64%s
-D s-valint.ads		20210520051134 e7fcadb7 system.val_int%s
 D s-vallli.ads		20210520051134 0767e6f3 system.val_lli%s
 D s-valllu.ads		20210520051134 660d930f system.val_llu%s
-D s-valuns.ads		20210520051134 dac7b45d system.val_uns%s
-D s-valuef.ads		20210520051134 44d93748 system.value_f%s
 D s-valuei.ads		20210520051134 978dd0a6 system.value_i%s
 D s-valueu.ads		20210520051134 7b8fccf5 system.value_u%s
 D s-wchcon.ads		20210520051136 1b7d22d2 system.wch_con%s
@@ -112,48 +112,43 @@ X 1 ada.ads
 16K9*Ada 20e8 19|1r6 1r23
 X 13 a-textio.ads
 58K13*Text_IO 725e16 19|1w10 1r27
-463U14*Put 19|57s4 61s4 65s4
-479U14*Get_Line 19|58s4 62s4 66s4
-506U14*Put_Line 19|52s7
+463U14*Put 19|47s4
+479U14*Get_Line 19|48s4
+506U14*Put_Line 19|42s7
 X 15 interfac.ads
 55I9*Integer_64<long_long_integer>
 X 19 main.adb
-3U11*Main 3b11 90l5 90t9
-5a4 input_num_threads{string} 6r40 58m13 59r39
-6i4 last_index_num_threads{natural} 58m32 59r60
-7i4 value_num_threads{integer} 17r37 59m4 70r43 71r45
-9a4 input_break_time{string} 10r39 14r33 66m13 67r39
-10i4 last_index_break_time{natural} 66m31 67r59
-11o4 value_break_time{duration} 67m4 79r33
-13a4 input_step{string} 62m13 63r42
-14i4 last_index_step{natural} 62m25 63r56
-15i4 value_step{long_long_integer} 63m4 70r77
-17A9 canStop_array(boolean)<integer> 18r20
-18a4 is_stop_array{17A9} 19r18 36m10 50r20
-21T14 break_thread 24l8 24e20 30b14 39l8 39t20 71r67
-22Y13 SetDelay 22>22 32b14 34l11 34t19 79s24
-22o22 delayTime{duration} 33r17
-23Y13 ChangeState 23>25 35b14 37l11 37t22
-23i25 number{integer} 36r24
-26T14 main_thread 26d27 28l11 28e22 41b14 54l8 54t19 70r65
-26i27 step{long_long_integer} 49r23
-27Y13 SetNumber 27>24 45b14 47l11 47t20 83s32
-27i24 number{integer} 46r15
-32o24 delayTime{duration}
-35i27 number{integer}
-42i7 i{integer} 46m10 50r34
-43i7 sum{long_long_integer} 49m10 49r17 52r16
-45i25 number{integer}
-70A12 main_thread_array(26T14)<integer> 76r24
-71A12 break_thread_array(21T14)<integer> 75r19
-75a10 breaker{71A12} 78r19 79r13
-76a10 thread_array{70A12} 82r22 83r16
-78i14 i{integer} 79r21
-82i17 i{integer} 83r29 83r42
+3U11*Main 3b11 63l5 63t9
+4i4 value_num_threads{integer} 10r37 11r41 52r43 53r45
+6a4 input_step{string} 7r33 48m13 49r42
+7i4 last_index_step{natural} 48m25 49r56
+8i4 value_step{long_long_integer} 49m4 52r77
+10A9 canStop_array(boolean)<integer> 12r20
+11A9 delaySetter_array(duration)<integer> 14r24
+12a4 is_stop_array{10A9} 13r18 27m10 40r20
+14a4 breaker_delay_set{11A9} 43r41 59r30
+16T14 break_thread 18l8 18e20 23b14 29l8 29t20 53r67
+17Y13 SetDelay 17>23 17>45 25b14 28l11 28t19 59s21
+17o23 delayTime{duration} 26r17
+17i45 arrayPos{integer} 27r24
+19T14 main_thread 19d27 21l8 21e19 31b14 44l8 44t19 52r65
+19i27 step{long_long_integer} 39r23 42r72
+20Y13 SetPos 20>20 35b14 37l11 37t17 58s26
+20i20 arrayPos{integer} 36r24
+25o24 delayTime{duration}
+25i49 arrayPos{integer}
+32i7 sum{long_long_integer} 39m10 39r17 42r51
+33i7 currentPos{integer} 36m10 40r34 42r24 43r59
+35i22 arrayPos{integer}
+52A12 main_thread_array(19T14)<integer> 55r22
+53A12 break_thread_array(16T14)<integer> 54r16
+54a7 breaker{53A12} 57r16 59r10
+55a7 main_threads{52A12} 58r10
+57i11 i{integer} 58r23 58r33 59r18 59r48 59r52
 X 22 s-arit64.ads
 44I12*Int64{15|55I9}
 54V13*Multiply_With_Ovflo_Check64{44I12} 55i<c,__gnat_mulv64>22
-X 37 s-stausa.ads
+X 40 s-stausa.ads
 208U14*Initialize 209i<c,__gnat_stack_usage_initialize>22
 273U14*Output_Results 277i<c,__gnat_stack_usage_output_results>22
 

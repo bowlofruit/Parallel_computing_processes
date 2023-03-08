@@ -38,11 +38,11 @@ package body ada_main is
    E006 : Short_Integer; pragma Import (Ada, E006, "ada__calendar__delays_E");
    E103 : Short_Integer; pragma Import (Ada, E103, "ada__real_time_E");
    E143 : Short_Integer; pragma Import (Ada, E143, "ada__text_io_E");
-   E166 : Short_Integer; pragma Import (Ada, E166, "system__tasking__initialization_E");
-   E174 : Short_Integer; pragma Import (Ada, E174, "system__tasking__protected_objects_E");
-   E176 : Short_Integer; pragma Import (Ada, E176, "system__tasking__protected_objects__entries_E");
-   E180 : Short_Integer; pragma Import (Ada, E180, "system__tasking__queuing_E");
-   E184 : Short_Integer; pragma Import (Ada, E184, "system__tasking__stages_E");
+   E180 : Short_Integer; pragma Import (Ada, E180, "system__tasking__initialization_E");
+   E188 : Short_Integer; pragma Import (Ada, E188, "system__tasking__protected_objects_E");
+   E190 : Short_Integer; pragma Import (Ada, E190, "system__tasking__protected_objects__entries_E");
+   E194 : Short_Integer; pragma Import (Ada, E194, "system__tasking__queuing_E");
+   E198 : Short_Integer; pragma Import (Ada, E198, "system__tasking__stages_E");
 
    Sec_Default_Sized_Stacks : array (1 .. 1) of aliased System.Secondary_Stack.SS_Stack (System.Parameters.Runtime_Default_Sec_Stack_Size);
 
@@ -53,7 +53,7 @@ package body ada_main is
 
    procedure finalize_library is
    begin
-      E176 := E176 - 1;
+      E190 := E190 - 1;
       declare
          procedure F1;
          pragma Import (Ada, F1, "system__tasking__protected_objects__entries__finalize_spec");
@@ -186,7 +186,7 @@ package body ada_main is
            True, True, False, False, False, False, False, False, 
            False, False, False, False, True, True, False, False, 
            False),
-         Count => (0, 0, 0, 0, 0, 2, 1, 0, 0, 0),
+         Count => (0, 0, 0, 0, 0, 1, 1, 0, 0, 0),
          Unknown => (False, False, False, False, False, False, True, False, False, False));
       Priority_Specific_Dispatching :=
         Local_Priority_Specific_Dispatching'Address;
@@ -272,15 +272,15 @@ package body ada_main is
       Ada.Text_Io'Elab_Body;
       E143 := E143 + 1;
       System.Tasking.Initialization'Elab_Body;
-      E166 := E166 + 1;
-      System.Tasking.Protected_Objects'Elab_Body;
-      E174 := E174 + 1;
-      System.Tasking.Protected_Objects.Entries'Elab_Spec;
-      E176 := E176 + 1;
-      System.Tasking.Queuing'Elab_Body;
       E180 := E180 + 1;
+      System.Tasking.Protected_Objects'Elab_Body;
+      E188 := E188 + 1;
+      System.Tasking.Protected_Objects.Entries'Elab_Spec;
+      E190 := E190 + 1;
+      System.Tasking.Queuing'Elab_Body;
+      E194 := E194 + 1;
       System.Tasking.Stages'Elab_Body;
-      E184 := E184 + 1;
+      E198 := E198 + 1;
    end adainit;
 
    procedure Ada_Main_Program;
@@ -318,9 +318,9 @@ package body ada_main is
    end;
 
 --  BEGIN Object file/option list
-   --   D:\Education\Parallel_computing_processes\Lab1\Ada\obj\main.o
-   --   -LD:\Education\Parallel_computing_processes\Lab1\Ada\obj\
-   --   -LD:\Education\Parallel_computing_processes\Lab1\Ada\obj\
+   --   C:\Education\Parallel_computing_processes\Lab1\Ada\obj\main.o
+   --   -LC:\Education\Parallel_computing_processes\Lab1\Ada\obj\
+   --   -LC:\Education\Parallel_computing_processes\Lab1\Ada\obj\
    --   -LC:/gnat/2021/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/
    --   -static
    --   -lgnarl

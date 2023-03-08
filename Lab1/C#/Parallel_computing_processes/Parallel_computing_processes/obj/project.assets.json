@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Education\\Parallel_computing_processes\\Lab1\\C#\\Parallel_computing_processes\\Parallel_computing_processes\\Parallel_computing_processes.csproj",
+      "projectUniqueName": "C:\\Education\\Parallel_computing_processes\\Lab1\\C#\\Parallel_computing_processes\\Parallel_computing_processes\\Parallel_computing_processes.csproj",
       "projectName": "Parallel_computing_processes",
-      "projectPath": "D:\\Education\\Parallel_computing_processes\\Lab1\\C#\\Parallel_computing_processes\\Parallel_computing_processes\\Parallel_computing_processes.csproj",
+      "projectPath": "C:\\Education\\Parallel_computing_processes\\Lab1\\C#\\Parallel_computing_processes\\Parallel_computing_processes\\Parallel_computing_processes.csproj",
       "packagesPath": "C:\\Users\\Bowlof\\.nuget\\packages\\",
-      "outputPath": "D:\\Education\\Parallel_computing_processes\\Lab1\\C#\\Parallel_computing_processes\\Parallel_computing_processes\\obj\\",
+      "outputPath": "C:\\Education\\Parallel_computing_processes\\Lab1\\C#\\Parallel_computing_processes\\Parallel_computing_processes\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Bowlof\\AppData\\Roaming\\NuGet\\NuGet.Config",
