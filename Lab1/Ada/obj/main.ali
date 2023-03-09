@@ -25,7 +25,7 @@ RV NO_IMPLICIT_LOOPS
 RV MAX_TASK_ENTRIES=1
 RV MAX_TASKS=1+
 
-U main%b		main.adb		6026d633 NE OO SU
+U main%b		main.adb		00946674 NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
@@ -33,6 +33,7 @@ Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 Z interfaces%s		interfac.ads		interfac.ali
 Z system%s		system.ads		system.ali
+Z system.concat_2%s	s-conca2.adb		s-conca2.ali
 Z system.concat_8%s	s-conca8.adb		s-conca8.ali
 Z system.img_fixed_64%s	s-imfi64.ads		s-imfi64.ali
 Z system.img_int%s	s-imgint.ads		s-imgint.ali
@@ -44,7 +45,6 @@ Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
 Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
-Z system.val_lli%s	s-vallli.ads		s-vallli.ali
 
 D ada.ads		20210520051132 76789da1 ada%s
 D a-calend.ads		20210520051128 474d9720 ada.calendar%s
@@ -64,10 +64,11 @@ D interfac.ads		20210520051132 edec285f interfaces%s
 D i-c.ads		20210520051132 d9beded9 interfaces.c%s
 D i-cstrin.ads		20210520051132 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
-D main.adb		20230309073854 ced2035e main%b
+D main.adb		20230309081116 ae60b319 main%b
 D system.ads		20210520051136 2ffa5114 system%s
 D s-atacco.ads		20210520051132 4c36d12f system.address_to_access_conversions%s
 D s-arit64.ads		20210520051132 5f88d2b0 system.arith_64%s
+D s-conca2.ads		20210520051132 02a0d7d0 system.concat_2%s
 D s-conca8.ads		20210520051132 e3074dd7 system.concat_8%s
 D s-crtl.ads		20210520051132 0ebbdb71 system.crtl%s
 D s-exctab.ads		20210520051132 54135002 system.exception_table%s
@@ -99,10 +100,6 @@ D s-tasren.ads		20210520051128 a67a9949 system.tasking.rendezvous%s
 D s-tassta.ads		20210520051128 cca55c94 system.tasking.stages%s
 D s-traent.ads		20210520051134 26a8d361 system.traceback_entries%s
 D s-unstyp.ads		20210520051134 2b077493 system.unsigned_types%s
-D s-vallli.ads		20210520051134 0767e6f3 system.val_lli%s
-D s-valllu.ads		20210520051134 660d930f system.val_llu%s
-D s-valuei.ads		20210520051134 978dd0a6 system.value_i%s
-D s-valueu.ads		20210520051134 7b8fccf5 system.value_u%s
 D s-wchcon.ads		20210520051136 1b7d22d2 system.wch_con%s
 D s-win32.ads		20210520051136 15ac53fb system.win32%s
 D unchconv.ads		20210520051136 ca2f9e18 unchecked_conversion%s
@@ -112,45 +109,41 @@ X 1 ada.ads
 16K9*Ada 20e8 19|1r6 1r23
 X 13 a-textio.ads
 58K13*Text_IO 725e16 19|1w10 1r27
-463U14*Put 19|51s4
-479U14*Get_Line 19|52s4
-506U14*Put_Line 19|46s7
+506U14*Put_Line 19|45s7 50s4 51s4
 X 15 interfac.ads
 55I9*Integer_64<long_long_integer>
 X 19 main.adb
-3U11*Main 3b11 67l5 67t9
-4i4 value_num_threads{integer} 10r37 11r41 56r43 57r45
-6a4 input_step{string} 7r33 52m13 53r42
-7i4 last_index_step{natural} 52m25 53r56
-8i4 value_step{long_long_integer} 53m4 56r77
-10A9 canStop_array(boolean)<integer> 12r20
-11A9 delaySetter_array(duration)<integer> 14r24
-12a4 is_stop_array{10A9} 13r18 32m7 44r20
-14a4 breaker_delay_set{11A9} 47r41 63r30
-16T14 break_thread 18l8 18e20 23b14 33l8 33t20 57r67
-17Y13 SetDelay 17>23 17>45 27b14 30l11 30t19 63s21
-17o23 delayTime{duration} 28r19
-17i45 arrayPos{integer} 29r24
-19T14 main_thread 19d27 21l8 21e19 35b14 48l8 48t19 56r65
-19i27 step{long_long_integer} 43r23 46r72
-20Y13 SetPos 20>20 39b14 41l11 41t17 62s26
-20i20 arrayPos{integer} 40r24
-24o7 timer{duration} 28m10 31r14
-25i7 currentPos{integer} 29m10 32r21
-27o24 delayTime{duration}
-27i49 arrayPos{integer}
-36i7 sum{long_long_integer} 43m10 43r17 46r51
-37i7 currentPos{integer} 40m10 44r34 46r24 47r59
-39i22 arrayPos{integer}
-56A12 main_thread_array(19T14)<integer> 59r22
-57A12 break_thread_array(16T14)<integer> 58r16
-58a7 breaker{57A12} 61r16 63r10
-59a7 main_threads{56A12} 62r10
-61i11 i{integer} 62r23 62r33 63r18 63r48 63r52
+3U11*Main 3b11 64l5 64t9
+4i4 value_num_threads{integer} 8r37 9r41 50r32 53r43 54r45
+6i4 value_step{long_long_integer} 51r33 53r77
+8A9 canStop_array(boolean)<integer> 11r20
+9A9 delaySetter_array(duration)<integer> 13r24
+11a4 is_stop_array{8A9} 12r18 31m7 43r20
+13a4 breaker_delay_set{9A9} 46r41 60r30
+15T14 break_thread 17l8 17e20 22b14 32l8 32t20 54r67
+16Y13 SetDelay 16>23 16>45 26b14 29l11 29t19 60s21
+16o23 delayTime{duration} 27r19
+16i45 arrayPos{integer} 28r24
+18T14 main_thread 18d27 20l8 20e19 34b14 47l8 47t19 53r65
+18i27 step{long_long_integer} 42r23 45r72
+19Y13 SetPos 19>20 38b14 40l11 40t17 59s26
+19i20 arrayPos{integer} 39r24
+23o7 timer{duration} 27m10 30r14
+24i7 currentPos{integer} 28m10 31r21
+26o24 delayTime{duration}
+26i49 arrayPos{integer}
+35i7 sum{long_long_integer} 42m10 42r17 45r51
+36i7 currentPos{integer} 39m10 43r34 45r24 46r59
+38i22 arrayPos{integer}
+53A12 main_thread_array(18T14)<integer> 56r22
+54A12 break_thread_array(15T14)<integer> 55r16
+55a7 breaker{54A12} 58r16 60r10
+56a7 main_threads{53A12} 59r10
+58i11 i{integer} 59r23 59r33 60r18 60r48 60r52
 X 22 s-arit64.ads
 44I12*Int64{15|55I9}
 54V13*Multiply_With_Ovflo_Check64{44I12} 55i<c,__gnat_mulv64>22
-X 40 s-stausa.ads
+X 41 s-stausa.ads
 208U14*Initialize 209i<c,__gnat_stack_usage_initialize>22
 273U14*Output_Results 277i<c,__gnat_stack_usage_output_results>22
 

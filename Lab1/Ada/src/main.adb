@@ -3,15 +3,14 @@ with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
    value_num_threads : Integer := 5;
 
-   input_step: String(1..100);
-   last_index_step : Natural := input_step'Length;
-   value_step : Long_Long_Integer;
+   value_step : Long_Long_Integer := 2;
 
    type canStop_array is array (1.. value_num_threads) of Boolean;
    type delaySetter_array is array (1.. value_num_threads) of Duration;
+
    is_stop_array : canStop_array := (others => False);
    pragma Atomic(is_stop_array);
-   breaker_delay_set : delaySetter_array := (0.5, 1.5, 1.0, 2.0, 2.5);
+   breaker_delay_set : delaySetter_array := (3.0, 3.5, 4.5, 4.0, 5.0);
 
    task type break_thread is
       entry SetDelay (delayTime : Duration; arrayPos : Integer);
@@ -48,10 +47,8 @@ procedure Main is
    end main_thread;
 
 begin
-   Put("Enter step to calculate the sum: ");
-   Get_Line(input_step, last_index_step);
-   value_step := Long_Long_Integer'Value(input_step(1..last_index_step));
-
+   Put_Line("Thread amount:" & value_num_threads'Img);
+   Put_Line("Step for count:" & value_step'Img);
    declare
       type main_thread_array is array(1.. value_num_threads) of main_thread(value_step);
       type break_thread_array is array (1.. value_num_threads) of break_thread;
