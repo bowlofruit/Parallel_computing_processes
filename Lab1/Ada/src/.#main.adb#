@@ -9,6 +9,7 @@ procedure Main is
 
    type canStop_array is array (1.. value_num_threads) of Boolean;
    type delaySetter_array is array (1.. value_num_threads) of Duration;
+
    is_stop_array : canStop_array := (others => False);
    pragma Atomic(is_stop_array);
    breaker_delay_set : delaySetter_array := (0.5, 1.5, 1.0, 2.0, 2.5);
@@ -48,11 +49,6 @@ procedure Main is
    end main_thread;
 
 begin
-   Put("Enter step to calculate the sum: ");
-   Get_Line(input_step, last_index_step);
-   value_step := Long_Long_Integer'Value(input_step(1..last_index_step));
-
-   declare
       type main_thread_array is array(1.. value_num_threads) of main_thread(value_step);
       type break_thread_array is array (1.. value_num_threads) of break_thread;
       breaker: break_thread_array;
