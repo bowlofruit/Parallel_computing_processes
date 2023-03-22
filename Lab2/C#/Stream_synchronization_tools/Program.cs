@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace ThreadSumSharp
+namespace Stream_synchronization_tools
 {
     class Program
     {
