@@ -64,7 +64,6 @@ public class ArrClass {
             thread[i].setName("Thread " + i);
             thread[i].start();
         }
-
         return getSum();
     }
 }
