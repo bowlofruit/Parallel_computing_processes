@@ -2,7 +2,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 procedure main is
 
    dim : constant integer := 100000;
-   thread_num : constant integer := 2;
+   thread_num : constant integer := 10;
 
    arr : array(1..dim) of integer;
 
@@ -16,7 +16,7 @@ procedure main is
    function part_sum(start_index, finish_index : in integer) return long_long_integer is
       sum : long_long_integer := 0;
    begin
-      for i in start_index..finish_index loop
+      for i in start_index + 1..finish_index loop
          sum := sum + long_long_integer(arr(i));
       end loop;
       return sum;
@@ -71,7 +71,6 @@ procedure main is
             start_index : Integer := step * (i - 1);
             end_index : Integer := step * i;
          begin
-            Put_Line(start_index'Img);
             if(dim - end_index < step) then
                end_index := dim;
             end if;
@@ -85,6 +84,6 @@ procedure main is
 
 begin
    Init_Arr;
-   Put_Line(part_sum(1, dim)'img);
+   Put_Line(part_sum(0, dim)'img);
    Put_Line(parallel_sum'img);
 end main;
