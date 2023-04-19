@@ -1,7 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Main is
-   value_num_threads : Integer := 5;
+   value_num_threads : Integer := 10;
 
    value_step : Long_Long_Integer := 2;
 
