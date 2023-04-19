@@ -74,7 +74,7 @@ procedure main is
             if(dim - end_index < step) then
                end_index := dim;
             end if;
-            Put_Line(end_index'Img);
+            Put_Line("Thread ID:" & i'Img & " -" & end_index'Img);
             thread(i).start(start_index, end_index);
          end;
       end loop;

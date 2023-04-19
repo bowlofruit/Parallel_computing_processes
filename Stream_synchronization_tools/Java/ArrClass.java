@@ -54,8 +54,8 @@ public class ArrClass {
         int step = dim/threadNum;
         for (int i = 0; i < thread.length; i++)
         {
-            var startIndex = i * step;
-            var finishIndex = (i + 1) * step;
+            int startIndex = i * step;
+            int finishIndex = (i + 1) * step;
             if(dim - finishIndex < step)
             {
                 finishIndex = dim;
