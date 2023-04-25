@@ -330,9 +330,9 @@ package body ada_main is
    end;
 
 --  BEGIN Object file/option list
-   --   C:\Education\Parallel_computing_processes\Philosophers\Ada\obj\main.o
-   --   -LC:\Education\Parallel_computing_processes\Philosophers\Ada\obj\
-   --   -LC:\Education\Parallel_computing_processes\Philosophers\Ada\obj\
+   --   C:\Education\Parallel_computing_processes\Philosophers\Main\Ada\obj\main.o
+   --   -LC:\Education\Parallel_computing_processes\Philosophers\Main\Ada\obj\
+   --   -LC:\Education\Parallel_computing_processes\Philosophers\Main\Ada\obj\
    --   -LC:/gnat/2021/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/
    --   -static
    --   -lgnarl

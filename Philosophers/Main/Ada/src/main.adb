@@ -18,7 +18,7 @@ procedure Main is
       Id_Left_Fork := Id;
       Id_Right_Fork := Id rem 4 + 1;
 
-      for I in 1..10 loop
+      for I in 1..3 loop
          Put_Line("Philosopher " & Id'Img & " thinking " & I'Img & " time");
 
          if Id_Left_Fork < Id_Right_Fork then

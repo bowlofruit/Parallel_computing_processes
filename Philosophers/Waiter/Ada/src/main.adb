@@ -19,18 +19,20 @@ procedure Main is
       Id_Left_Fork := Id;
       Id_Right_Fork := Id rem 4 + 1;
 
-      for I in 1..10 loop
-         Put_Line( Philosopher " & Id'Img & " thinking " & I'Img & " time");
+      for I in 1..3 loop
+         Put_Line( "Philosopher " & Id'Img & " thinking " & I'Img & " time");
+         Put_Line( "Philosopher " & Id'Img & " asked to waiter to serve him " & I'Img & " time");
          Waiter.Seize;
          Forks(Id_Left_Fork).Seize;
-         Put_Line( Philosopher " & Id'Img & " took left fork");
+         Put_Line( "Philosopher " & Id'Img & " took left fork");
          Forks(Id_Right_Fork).Seize;
-         Put_Line( Philosopher " & Id'Img & " took right fork");
-         Put_Line( Philosopher " & Id'Img & " eating" & I'Img & " time");
+         Put_Line( "Philosopher " & Id'Img & " took right fork");
+         Put_Line( "Philosopher " & Id'Img & " eating" & I'Img & " time");
          Forks(Id_Right_Fork).Release;
-         Put_Line( Philosopher " & Id'Img & " put right fork");
+         Put_Line( "Philosopher " & Id'Img & " put right fork");
          Forks(Id_Left_Fork).Release;
-         Put_Line( Philosopher " & Id'Img & " put left fork");
+         Put_Line( "Philosopher " & Id'Img & " put left fork");
+         Put_Line( "The waiter finished serving philosopher " & Id'Img);
          Waiter.Release;
       end loop;
    end Philosopher;

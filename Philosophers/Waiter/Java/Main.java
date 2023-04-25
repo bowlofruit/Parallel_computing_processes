@@ -9,7 +9,7 @@ public class Main {
             forks[i] = new Fork(i);
         }
         Waiter waiter = new Waiter();
-        Philosopher[] philosophers = new Philosopher[5];
+        Philosopher[] philosophers = new Philosopher[4];
         for (int i = 0; i < 4; i++) {
             philosophers[i] = new Philosopher(i, forks[i], forks[(i + 1) % 4], waiter);
         }
@@ -54,6 +54,7 @@ class Philosopher implements Runnable{
         try{
             for (int i = 0; i < 3; i++) {
                 System.out.println("Philosopher " + id + " thinking time " + i);
+                System.out.println("Philosopher " + id + " asked the waiter to serve him");
                 waiter.access.acquire();
 
                 System.out.println("Philosopher " + id + " took fork " + leftFork.id);
@@ -69,6 +70,7 @@ class Philosopher implements Runnable{
                 leftFork.access.release();
                 
                 System.out.println("Philosopher " + id + " put fork " + leftFork.id);
+                System.out.println("The waiter finished serving philosopher " + id);
                 waiter.access.release();
             }
         }catch(InterruptedException e){

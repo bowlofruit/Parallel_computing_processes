@@ -1,17 +1,17 @@
 [GENERATED OBJECT FILE]
 b__main.o
 [PROJECT FILES]
-C:\Education\Parallel_computing_processes\Philosophers\Ada\default.gpr
-20230425205820 44521ee91ec73b1160e0df47a259745b
+C:\Education\Parallel_computing_processes\Philosophers\Main\Ada\default.gpr
+20230425205820 94a5f74ca21fb30867d71070f6744cdf
 [BOUND OBJECT FILES]
-C:\Education\Parallel_computing_processes\Philosophers\Ada\obj\main.o
+C:\Education\Parallel_computing_processes\Philosophers\Main\Ada\obj\main.o
 [GENERATED SOURCE FILES]
 b__main.ads
 b__main.adb
 b__main.ali
 [RESULTING OPTIONS]
--LC:\Education\Parallel_computing_processes\Philosophers\Ada\obj\
--LC:\Education\Parallel_computing_processes\Philosophers\Ada\obj\
+-LC:\Education\Parallel_computing_processes\Philosophers\Main\Ada\obj\
+-LC:\Education\Parallel_computing_processes\Philosophers\Main\Ada\obj\
 -LC:/gnat/2021/lib/gcc/x86_64-w64-mingw32/10.3.1/adalib/
 -static
 -static-libgcc
