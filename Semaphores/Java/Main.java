@@ -1,127 +1,103 @@
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.LinkedList;
 import java.util.concurrent.Semaphore;
 
 public class Main {
+    private static final int size = 4;
+    private static final int work_target = 10;
+    private static final int producer_count = 4;
+    private static final int consumer_count = 6;
+
+    private static List<String> storage;
+    private static Semaphore accessStorage;
+    private static Semaphore fullStorage;
+    private static Semaphore emptyStorage;
+
+    private static int producersWorkDone = 0;
+    private static Semaphore accessProducersWorkDone;
+    private static int consumersWorkDone = 0;
+    private static Semaphore accessConsumersWorkDone;
+
     public static void main(String[] args) {
-        Init(4, 10, 4, 6);
-    }
-    private static void Init(int storageSize, int workTarget, int producers, int consumers) {
-        Storage storage = new Storage(storageSize, workTarget);
+        storage = new LinkedList<>();
+        accessStorage = new Semaphore(1);
+        fullStorage = new Semaphore(size);
+        emptyStorage = new Semaphore(0);
+        accessProducersWorkDone = new Semaphore(1);
+        accessConsumersWorkDone = new Semaphore(1);
 
-        for (int i = 0; i < consumers; i++) {
-            new Consumer(i, storage).start();
+        ProducerTask[] producers = new ProducerTask[producer_count];
+        ConsumerTask[] consumers = new ConsumerTask[consumer_count];
+
+        for (int i = 0; i < producer_count; i++) {
+            producers[i] = new ProducerTask("Producer " + (i + 1));
+            producers[i].start();
         }
 
-        for (int i = 0; i < producers; i++) {
-            new Producer(i, storage).start();
+        for (int i = 0; i < consumer_count; i++) {
+            consumers[i] = new ConsumerTask("Consumer " + (i + 1));
+            consumers[i].start();
         }
     }
-}
 
-class Storage{
-    public int size;
-    public Semaphore access;
-    public Semaphore empty;
-    public Semaphore full;
-    public List<String> buffer;
-    public volatile int workTarget;
-    public volatile int workDoneProducer;
-    public volatile int workDoneConsumer;
+    private static class ProducerTask extends Thread {
+        private String producerName;
 
-    private int lastIndex = 0;
+        public ProducerTask(String name) {
+            producerName = name;
+        }
 
-    public Storage(int size, int workTarget){
-        this.size = size;
-        this.access = new Semaphore(1);
-        this.empty = new Semaphore(0);
-        this.full = new Semaphore(size);
-        this.workTarget = workTarget;
-        this.workDoneProducer = 0;
-        this.workDoneConsumer = 0;
-        buffer = new ArrayList<>();
-    }
+        public void run() {
+            while (producersWorkDone < work_target) {
+                try {
+                    accessProducersWorkDone.acquire();
+                    if (producersWorkDone < work_target) {
+                        fullStorage.acquire();
+                        Thread.sleep(250);
+                        accessStorage.acquire();
 
-    public int put(){
-        buffer.add("item " + lastIndex);
-        lastIndex++;
-        return lastIndex - 1;
-    }
-}
+                        producersWorkDone++;
+                        storage.add("item " + producersWorkDone);
+                        System.out.println(producerName + " added item " + producersWorkDone);
 
-abstract class WorkingThread extends Thread{
-    protected final Storage storage;
-    protected final int index;
-
-    protected Random random = new Random();
-
-    public WorkingThread(int index, Storage storage){
-        this.storage = storage;
-        this.index = index;
-    }
-
-    @Override
-    public abstract void run();
-}
-
-class Producer extends WorkingThread{
-    public Producer(int index, Storage storage){
-        super(index, storage);
-    }
-
-    @Override
-    public void run() {
-        while (storage.workDoneProducer < storage.workTarget){
-            try {
-                storage.full.acquire();
-                Thread.sleep(random.nextInt(0, 100));
-                storage.access.acquire();
-
-                if (storage.workDoneProducer >= storage.workTarget){
-                    storage.access.release();
-                    return;
+                        accessStorage.release();
+                        emptyStorage.release();
+                    }
+                    accessProducersWorkDone.release();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
-                int itemIndex = storage.put();
-                System.out.println("Producer " + index + " added " + (itemIndex));
-                storage.workDoneProducer++;
-
-                storage.access.release();
-                storage.empty.release();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
-}
 
-class Consumer extends WorkingThread{
-    public Consumer(int index, Storage storage){
-        super(index, storage);
-    }
+    private static class ConsumerTask extends Thread {
+        private String consumerName;
 
-    @Override
-    public void run() {
-        while (storage.workDoneConsumer < storage.workTarget){
-            try {
-                storage.empty.acquire();
-                Thread.sleep(random.nextInt(0, 100));
-                storage.access.acquire();
+        public ConsumerTask(String name) {
+            consumerName = name;
+        }
 
-                if (storage.workDoneConsumer >= storage.workTarget){
-                    storage.access.release();
-                    return;
+        public void run() {
+            while (consumersWorkDone < work_target) {
+                try {
+                    accessConsumersWorkDone.acquire();
+                    if (consumersWorkDone < work_target) {
+                        emptyStorage.acquire();
+                        Thread.sleep(250);
+                        accessStorage.acquire();
+
+                        consumersWorkDone++;
+                        String item = storage.remove(0);
+                        System.out.println(consumerName + " took " + item);
+
+                        accessStorage.release();
+                        fullStorage.release();
+                    }
+                    accessConsumersWorkDone.release();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
-                String item = storage.buffer.remove(0);
-                System.out.println("Consumer " + index + " took " + (item));
-                storage.workDoneConsumer++;
-
-                storage.access.release();
-                storage.full.release();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
